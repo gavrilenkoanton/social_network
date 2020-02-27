@@ -1,0 +1,25 @@
+.wrapper{
+  display: grid;
+  grid-template-areas:
+"h h "
+"n p";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 1fr 10fr;
+  grid-gap: 10px;
+  background-color: #494b47;
+
+}
+.header{
+  grid-area: h;
+  background-color: #1e1e1e;
+
+}
+.navbar {
+  grid-area: n;
+  background-color: #29262a;
+
+}
+.profile{
+  grid-area: p;
+  background-color: lightgrey;
+}
