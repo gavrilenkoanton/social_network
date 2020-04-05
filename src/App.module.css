@@ -17,6 +17,7 @@
 .navbar {
   grid-area: n;
   background-color: #29262a;
+  height: 100vh;
 
 }
 .profile{

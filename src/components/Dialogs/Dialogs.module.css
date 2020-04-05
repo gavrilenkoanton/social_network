@@ -4,8 +4,16 @@
     grid-template-columns: 1fr 5fr;
 
 }
+.dialogsImg img{
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    object-fit: cover;
+}
 .dialogsItems{
 color: blue;
+    display: flex;
+    flex-direction: column;
 }
 .dialogsItems .active{
     color: red;
@@ -14,8 +22,29 @@ color: blue;
 
 }
 .messages{
-
+width: 40%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
-.message{
-
+.message1{
+text-align: left;
+}
+.message2{
+    text-align: right;
+}
+.inputDialogs{
+    display: flex;
+    justify-content: space-around;
+}
+.inputDialogs input{
+    width: 300px;
+    height: 33px;
+    border-radius: 6px;
+}
+.inputDialogs button{
+    height: 40px;
+    width: 60px;
+    border-radius: 6px;
+    border: 2px;
 }

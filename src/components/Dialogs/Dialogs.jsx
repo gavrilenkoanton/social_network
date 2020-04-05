@@ -1,40 +1,44 @@
 import React from 'react';
 import styles from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
+import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redux/dialogs-reducer";
 
 
 const DialogItem = (props) => {
     let path = "/dialogs/" + props.id;
     return (
-        <div><NavLink to={path}>{props.name}</NavLink></div>
+        <div className={styles.dialogsImg}><NavLink to={path}><img src={props.img}/>{props.name}</NavLink></div>
     )
 };
 
 const Message = (props) => {
-    return (
-        <div className={styles.message}>{props.message}</div>
-    )
-}
+    if (props.mesid === 1) {
+        return <div className={styles.message1}>{props.message}</div>
+    } else {
+        return (
+            <div className={styles.message2}>{props.message}</div>
+        )
+    }
+};
 
-function Dialogs() {
-    let dialogsData = [
-        {id: 1, name: 'Тоха'},
-        {id: 2, name: 'Марина'},
-        {id: 3, name: 'Андрей'},
-        {id: 4, name: 'Жора'},
-        {id: 5, name: 'Вася'},
-        {id: 6, name: 'Виктор'},
-    ];
+function Dialogs(props) {
 
-    let messagesData = [
-        {id: 1, message: 'еуеу, мазафака'},
-        {id: 2, message: 'хау а ю дуинг?'},
-        {id: 3, message: 'вери из май факинг мани?'},
-    ];
 
-    let dialogsElements = dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    let dialogsElements = props.messagePage.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}
+                                                                                  img={dialog.img}/>);
 
-    let messageElements = messagesData.map(message => <Message message={message.message} id={message.id}/>);
+    let messageElements = props.messagePage.messagesData.map(message => <Message message={message.message}
+                                                                                 id={message.id}
+                                                                                 mesid={message.mesid}/>);
+    let sendMessage = () => {
+        props.dispatch(sendMessageActionCreator())
+    };
+
+    let newText = (e) => {
+        let newText = e.target.value;
+        props.dispatch(updateNewMessageTextActionCreator(newText))
+    };
+
 
     return (
 
@@ -44,6 +48,11 @@ function Dialogs() {
             </div>
             <div className={styles.messages}>
                 {messageElements}
+                <div className={styles.inputDialogs}>
+                    <input type="text" onChange={newText} value={props.messagePage.newMessageText}/>
+                    <button onClick={sendMessage}>Send</button>
+                </div>
+
             </div>
         </div>
     );
