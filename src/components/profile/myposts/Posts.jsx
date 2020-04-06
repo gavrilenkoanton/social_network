@@ -8,11 +8,15 @@ function Posts(props) {
 
     let newPostElement =React.createRef();
 
-    let addPost = ()=>{props.dispatch(addPostActionCreator())};
+    let addPost = ()=>{
+        // props.dispatch(addPostActionCreator())
+        props.addPost()
+    };
 
     let newText = ()=>{
         let text = newPostElement.current.value;
-        props.dispatch(updateNewPostTextActionCreator(text))
+        // props.dispatch(updateNewPostTextActionCreator(text))
+        props.updateNewPostText(text)
     };
 
     let postElements = props.profilePage.posts.map(p => <Post message={p.message} likesCount={p.likesCount} />);

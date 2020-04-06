@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redux/dialogs-reducer";
 
 
+
 const DialogItem = (props) => {
     let path = "/dialogs/" + props.id;
     return (
@@ -23,20 +24,23 @@ const Message = (props) => {
 
 function Dialogs(props) {
 
+    let state = props.state
 
-    let dialogsElements = props.messagePage.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}
+    let dialogsElements = state.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}
                                                                                   img={dialog.img}/>);
 
-    let messageElements = props.messagePage.messagesData.map(message => <Message message={message.message}
+    let messageElements = state.messagesData.map(message => <Message message={message.message}
                                                                                  id={message.id}
                                                                                  mesid={message.mesid}/>);
     let sendMessage = () => {
-        props.dispatch(sendMessageActionCreator())
+        // props.dispatch(sendMessageActionCreator())
+        props.sendMessage();
     };
 
     let newText = (e) => {
         let newText = e.target.value;
-        props.dispatch(updateNewMessageTextActionCreator(newText))
+        // props.dispatch(updateNewMessageTextActionCreator(newText))
+        props.newText(newText)
     };
 
 
@@ -49,7 +53,7 @@ function Dialogs(props) {
             <div className={styles.messages}>
                 {messageElements}
                 <div className={styles.inputDialogs}>
-                    <input type="text" onChange={newText} value={props.messagePage.newMessageText}/>
+                    <input type="text" onChange={newText} value={state.newMessageText}/>
                     <button onClick={sendMessage}>Send</button>
                 </div>
 
