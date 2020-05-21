@@ -1,8 +1,11 @@
 import React from 'react';
-import styles from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+// import styles from './Dialogs.module.css'
+// import {NavLink} from "react-router-dom";
 import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
+// import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
+// import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 
 
 // const DialogItem = (props) => {
@@ -22,7 +25,7 @@ import Dialogs from "./Dialogs";
 //     }
 // };
 
-function DialogsContainer(props) {
+// function DialogsContainer(props) {
 
     //
     // let dialogsElements = props.messagePage.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}
@@ -32,20 +35,38 @@ function DialogsContainer(props) {
     //                                                                              id={message.id}
     //                                                                              mesid={message.mesid}/>);
 
-    let state = props.store.getState().messagesPage;
+//     let state = props.store.getState().messagesPage;
+//
+//     let sendMessage = () => {
+//         props.store.dispatch(sendMessageActionCreator())
+//     };
+//
+//     let newText = (newText) => {
+//         // let newText = e.target.value;
+//
+//         props.store.dispatch(updateNewMessageTextActionCreator(newText))
+//     };
+//
+//
+//     return <Dialogs sendMessage={sendMessage} newText={newText} state={state}/>
+// }
 
-    let sendMessage = () => {
-        props.store.dispatch(sendMessageActionCreator())
-    };
+let mapStateToProps = (state) => {
+    return {
+        messagesPage: state.messagesPage
+    }
+};
+let mapDispatchToProps = (dispatch) => {
+    return {
+        newText: (newText) => {
+            dispatch(updateNewMessageTextActionCreator(newText))
+        },
+        sendMessage: ()=>{
+            dispatch(sendMessageActionCreator())
+        }
+    }
+};
 
-    let newText = (newText) => {
-        // let newText = e.target.value;
-
-        props.store.dispatch(updateNewMessageTextActionCreator(newText))
-    };
-
-
-    return <Dialogs sendMessage={sendMessage} newText={newText} state={state}/>
-}
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

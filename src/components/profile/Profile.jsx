@@ -6,11 +6,12 @@ import PostsContainer from "./myposts/PostsContainer";
 
 
 function Profile(props) {
-    debugger
+
     return (
         <div>
-            <ProfileInfo />
-            <PostsContainer store={props.store}
+            <ProfileInfo profile={props.profile}/>
+            <PostsContainer
+                // store={props.store}
                 // profilePage={props.profilePage}
                    // addPost={props.addPost}
                    // updateNewPostText={props.updateNewPostText}

@@ -4,3 +4,7 @@ width: 300px;
 .descriptionBlock{
     padding: 10px;
 }
+.fullName{
+    font-size: 20px;
+    font-weight: bold;
+}

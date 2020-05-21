@@ -1,3 +1,12 @@
 .header{
 
 }
+.login{
+    float: right;
+    color: red;
+}
+.login a{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
