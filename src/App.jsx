@@ -13,6 +13,7 @@ import Users from "./components/Users/Users";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
+import LoginPage from "./components/Login/Login";
 
 
 function App(props) {
@@ -50,6 +51,7 @@ function App(props) {
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
                     <Route path='/users' render={()=> <UsersContainer/>}/>
+                    <Route path='/login' render={()=> <LoginPage/>}/>
                 </div>
             </div>
         </BrowserRouter>

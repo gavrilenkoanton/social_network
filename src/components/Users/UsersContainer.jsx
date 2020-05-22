@@ -8,6 +8,8 @@ import Users from "./Users";
 import * as axios from "axios";
 import preloader from './../../img/preloader.gif'
 import {usersAPI} from "../../api/api";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersContainer extends React.Component {
@@ -90,9 +92,14 @@ let mapStateToProps = (state) => {
 //     }
 // }
 
-export default UsersContainer = connect(mapStateToProps, {
-    unfollow, follow,
-    // setUsersAC, choosePageAC,
-    // setTotalCountOfUsersAC, dataIsLoadingAC,
-    getUsers
-})(UsersContainer);
+
+
+export default compose(
+    connect(mapStateToProps, {
+        unfollow, follow,
+        // setUsersAC, choosePageAC,
+        // setTotalCountOfUsersAC, dataIsLoadingAC,
+        getUsers
+    }),
+    withAuthRedirect
+)(UsersContainer)

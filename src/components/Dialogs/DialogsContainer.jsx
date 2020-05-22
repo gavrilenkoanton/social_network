@@ -4,6 +4,8 @@ import React from 'react';
 import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 // import mapStateToProps from "react-redux/lib/connect/mapStateToProps";
 // import mapDispatchToProps from "react-redux/lib/connect/mapDispatchToProps";
 
@@ -53,7 +55,7 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-        messagesPage: state.messagesPage
+        messagesPage: state.messagesPage,
     }
 };
 let mapDispatchToProps = (dispatch) => {
@@ -67,6 +69,7 @@ let mapDispatchToProps = (dispatch) => {
     }
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
-
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)
