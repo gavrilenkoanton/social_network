@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css'
 import preloader from "../../../img/preloader.gif";
+import ProfileStatus from "./ProfileStatus";
 
 
 
@@ -15,7 +16,8 @@ function ProfileInfo(props) {
         <div>
             <div className={styles.image}><img
                 src="https://www.thewowstyle.com/wp-content/uploads/2015/03/Desktop-Wallpaper-HD2.jpg"
-                alt=""/></div>
+                alt=""/>
+            </div>
             <div className={styles.descriptionBlock}>
                 <img src={props.profile.photos.large} alt=""/>
                 <div className={styles.fullName}>
@@ -30,7 +32,8 @@ function ProfileInfo(props) {
                 <div>
                     {props.profile.lookingForAJob ? props.profile.lookingForAJobDescription : ""}
                 </div>
-                ava+description</div>
+                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+            </div>
         </div>
 
 
