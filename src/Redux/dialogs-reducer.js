@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
@@ -28,30 +27,15 @@ let initialState = {
         {id: 3, mesid: 2, message: 'бат ай кан ирн сом вискас'},
         {id: 3, mesid: 1, message: 'кэн ю бринг ме сом зис щит?'},
         {id: 3, mesid: 2, message: 'ок, бро, мяу'},
-    ],
-
-    newMessageText: ""
+    ]
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            // let stateCopy = {...state};
-            // stateCopy.newMessageText = action.newText;
-            return {
-                ...state,
-                newMessageText: action.newText
-            };
-
         case SEND_MESSAGE:
-            // let stateCopy = {...state};
-            // stateCopy.messagesData=[...state.messagesData];
-            // stateCopy.messagesData.push({id: 4, mesid: 2, message: state.newMessageText});
-            // stateCopy.newMessageText = '';
             return {
                 ...state,
-                messagesData: [...state.messagesData, {id: 4, mesid: 2, message: state.newMessageText}],
-                newMessageText: ''
+                messagesData: [...state.messagesData, {id: 4, mesid: 2, message: action .newMessageBody}]
             };
 
         default:
@@ -59,15 +43,10 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const updateNewMessageTextActionCreator = (text) => {
+export const sendMessageActionCreator = (newMessageBody) => {
     return {
-        type: UPDATE_NEW_MESSAGE_TEXT, newText: text
-    };
-};
-
-export const sendMessageActionCreator = () => {
-    return {
-        type: SEND_MESSAGE
+        type: SEND_MESSAGE,
+        newMessageBody
     }
 };
 

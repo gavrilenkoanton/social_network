@@ -11,7 +11,6 @@ let initialState = {
         {id: 1, message: 'Пусть это будет мой первый пост', likesCount: 10},
         {id: 2, message: 'Пусть это будет мой второй пост)', likesCount: 11}
     ],
-    newPostText: '',
     profile: null,
     status: ''
 };
@@ -24,14 +23,9 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             };
         case ADD_POST:
-            // let stateCopy = {...state};
-            // stateCopy.posts=[...state.posts];
-            // stateCopy.posts.push({id: 3, message: state.newPostText, likesCount: 0});
-            // stateCopy.newPostText = '';
             return {
                 ...state,
-                posts: [...state.posts, {id: 3, message: state.newPostText, likesCount: 0}],
-                newPostText: ''
+                posts: [...state.posts, {id: 3, message: action.newPostBody, likesCount: 0}]
             };
             case SET_USER_STATUS:
             return {
@@ -40,9 +34,6 @@ const profileReducer = (state = initialState, action) => {
             };
 
         case UPDATE_NEW_POST_TEXT:
-            // let stateCopy = {...state};
-            // stateCopy.posts = [...state.posts];
-            // stateCopy.newPostText = action.newText;
             return {
                 ...state,
                 newPostText: action.newText
@@ -53,7 +44,7 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostActionCreator = () => ({type: ADD_POST});
+export const addPostActionCreator = (newPostBody) => ({type: ADD_POST, newPostBody});
 export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text});
 export const setProfileInfoSuccess = (profile) => ({ type: SET_PROFILE_INFO, profile});
 export const setUserStatusSuccess = (status) => ({ type: SET_USER_STATUS, status});

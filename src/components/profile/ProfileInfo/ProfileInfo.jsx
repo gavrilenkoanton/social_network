@@ -3,14 +3,11 @@ import styles from './ProfileInfo.module.css'
 import preloader from "../../../img/preloader.gif";
 import ProfileStatus from "./ProfileStatus";
 
-
-
 function ProfileInfo(props) {
 
     if(!props.profile){
         return  <img src={preloader} />
     }
-
 
     return (
         <div>

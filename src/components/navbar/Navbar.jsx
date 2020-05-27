@@ -24,8 +24,6 @@ function Navbar(props) {
             <div><NavLink to="/settings" activeClassName={styles.active}> Settings</NavLink></div>
             <div> </div>
             <div><NavLink to="/friends" activeClassName={styles.active}> Friends {bestFriends}</NavLink></div>
-
-
         </div>
     );
 }

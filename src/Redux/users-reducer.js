@@ -30,7 +30,6 @@ const usersReducer = (state = initialState, action) => {
             };
 
         case UNFOLLOW:
-
             return {
                 ...state,
                 users: state.users.map(u => {
@@ -40,11 +39,13 @@ const usersReducer = (state = initialState, action) => {
                     return u
                 })
             };
+
         case SET_USERS:
             return {
                 ...state,
                 users: action.users
             };
+
         case SET_PAGE:
             return {
                 ...state,
@@ -91,7 +92,6 @@ export const follow = (userId)=>{
                 if (response.data.resultCode === 0) {
                     dispatch(followSuccess(userId))
                 }
-
             })
     }
 }
@@ -99,11 +99,9 @@ export const unfollow = (userId)=>{
     return (dispatch)=>{
         usersAPI.unfollow(userId)
             .then(response => {
-
                 if (response.data.resultCode === 0) {
                     dispatch(unfollowSuccess(userId))
                 }
-
             })
     }
 }
